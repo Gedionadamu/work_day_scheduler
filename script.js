@@ -12,36 +12,39 @@ var saveButton = $(".saveBtn")
 saveButton.on('click',saveUserInput);
 
 timeManager();
-renderUserInput();
+// renderUserInput();
+var todo = [];
 
-function saveUserInput(event){
-    event.preventDefault();
+function saveUserInput(){
+    renderUserInput();
     var userInput = $(this).siblings('.description').val();
     var time = $(this).attr("id");
-    var descritpion = { userInput,time};
-    localStorage.setItem("description", JSON.stringify(descritpion));
-    renderUserInput();
+    var description = { userInput,time};
+    todo.push(description);
+    localStorage.setItem("description", JSON.stringify(todo));
+    
 };
 function renderUserInput(){
-    var lastInput = JSON.parse(localStorage.getItem("description"));
-    var time = lastInput.time;
-    var dis = lastInput.userInput.trim();
-    if(time === $(".description").prop("id")){
-        $(this).text= dis;
-        
+    // var lastInput = JSON.parse(localStorage.getItem("description"));
+    // var time = lastInput.time;
+    // var dis = lastInput.userInput;
+    // if(time === $(".description").prop("id")){
+    //     $(this).text= dis;
+    // console.log(time)
+    // console.log(dis)   
 
     }
     
-    console.log(time)
-    console.log(dis)
-}
+
+
  function timeManager(){
     var des = $(".description")
     var scheduleTime = $(".description").prop("id");
     
+    for(i=0; i<hour;i)
         if(hour == scheduleTime){
             des.attr("class","present col-10")
-        } else if ( hour < scheduleTime){
+        } else if ( hour > scheduleTime){
             des.attr("class", "future col-10")
         } else{
             des.attr("class","past col-10")
